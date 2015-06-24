@@ -1,0 +1,30 @@
+.btn-flat {
+	border-radius: 0px;
+	border-width: 1px;
+	background-image: none;
+}
+
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
+
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
+}
+
+.search-query {
+	padding-left: 14px;
+	padding-right: 14px;
+	border-radius: 14px;
+}
+
+li {
+	display: block;
+	margin-top: 30px;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 20px;
+}
+
+ul {
+	padding-left: 0px;
+}

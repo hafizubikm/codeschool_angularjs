@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" ng-app="todoApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>A Simple Todo Application in AngularJS</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <link rel="author" href="humans.txt">
+</head>
+<body>
+  <div class="container">
+    <div ng-controller="todoController as todoCtrl">
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1>TodoApp<small> | AngularJS</small></h1>
+      </div>
+
+      <!-- Search Todos -->
+      <form class="form-inline" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control search-query pull-left" placeholder="Search" ng-model="todoFilter">
+        </div>
+        <button class="btn btn-primary btn-flat pull-right" ng-hide="todoCtrl.visible" ng-click="todoCtrl.selectVisible(true)"><span class="glyphicon glyphicon-plus"></span></button>
+      </form>
+      
+      <!-- Add Todo -->
+      <form class="form-inline" ng-show="todoCtrl.visible" ng-submit="todoCtrl.addTodo(todo)">
+        <legend>Add Todo</legend>
+
+        <div class="form-group">
+          <input type="text" class="form-control pull-left" placeholder="Add Todo" ng-model="todo.newTodo" required>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-flat pull-right">Save</button>
+      </form>
+      
+
+      
+      <!-- List All Todos -->
+      <ul>
+        <li ng-repeat="todo in todoCtrl.todos | filter: todoFilter">
+          <span ng-hide="editing" ng-click="editing = true; todoCtrl.selectVisible(false)">{{todo}}</span>
+          <button type="button" class="btn btn-danger btn-flat pull-right" ng-hide="editing" ng-click="todoCtrl.remove(todo)"><span class="glyphicon glyphicon-remove"></span></button>
+
+          <!-- Edit | Delete Form -->
+          <form role="form" ng-show="editing" ng-submit="editing = false">
+            <!-- <legend>Edit Todo</legend> -->
+          
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Edit todo" ng-model="todo" required>
+            </div>
+          
+            <button type="submit" class="btn btn-primary btn-flat">Update</button>
+            <button type="button" ng-click="editing=false" class="btn btn-warning btn-flat">Cancel</button>
+            <button type="button" class="btn btn-danger btn-flat" ng-click="todoCtrl.remove(todo)">Delete</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
